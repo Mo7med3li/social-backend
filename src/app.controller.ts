@@ -5,6 +5,7 @@ import helmet from "helmet";
 import rateLimit from "express-rate-limit";
 import { config } from "dotenv";
 import { resolve } from "node:path";
+import { errorHandler } from "./utils/api.utils";
 
 config({ path: resolve("config/.env") });
 
@@ -43,6 +44,9 @@ export const bootstrap = () => {
       .status(404)
       .json({ message: "route not found , please check the documentation" });
   });
+
+  // error handling
+  app.use(errorHandler);
 
   // start the server
   app.listen(port, () => {
