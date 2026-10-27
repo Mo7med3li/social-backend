@@ -1,0 +1,9 @@
+node_modules
+.env
+dist
+
+# Accidental tsc emit next to .ts (e.g. `tsc src/index.ts` without outDir)
+src/**/*.js
+src/**/*.js.map
+src/**/*.d.ts
+src/**/*.d.ts.map
