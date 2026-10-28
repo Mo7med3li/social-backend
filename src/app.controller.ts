@@ -6,6 +6,7 @@ import rateLimit from "express-rate-limit";
 import { config } from "dotenv";
 import { resolve } from "node:path";
 import { errorHandler } from "./utils/response/error.response";
+import { connectDB } from "./DB/connection.db";
 
 config({ path: resolve("config/.env") });
 
@@ -30,6 +31,9 @@ export const bootstrap = () => {
       message: `Welcome to ${process.env.APPLICATION_NAME} API`,
     });
   });
+
+  // connect to database
+  connectDB();
 
   // routes
   app.use("/api/auth", controllers.authRouter);
