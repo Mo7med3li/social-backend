@@ -5,7 +5,7 @@ import helmet from "helmet";
 import rateLimit from "express-rate-limit";
 import { config } from "dotenv";
 import { resolve } from "node:path";
-import { errorHandler } from "./utils/api.utils";
+import { errorHandler } from "./utils/response/error.response";
 
 config({ path: resolve("config/.env") });
 
