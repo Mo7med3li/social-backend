@@ -4,7 +4,7 @@ export abstract class BaseRepository<T> {
   constructor(private readonly model: Model<T>) {}
 
   //   Create a new document
-  async createNewDocument(document: T): Promise<T> {
+  async createNewDocument(document: Partial<T>): Promise<T> {
     return await this.model.create(document);
   }
 

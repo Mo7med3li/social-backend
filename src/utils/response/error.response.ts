@@ -1,4 +1,4 @@
-import type { Request, Response } from "express";
+import type { NextFunction, Request, Response } from "express";
 
 export interface IError extends Error {
   statusCode?: number;
@@ -28,10 +28,12 @@ export class BadRequestError extends ApplicationError {
   }
 }
 
+// Express only treats this as an error middleware if it has 4 parameters.
 export const errorHandler = (
   err: ApplicationError,
   req: Request,
   res: Response,
+  _next: NextFunction,
 ): Response => {
   return res.status(err.statusCode || 500).json({
     success: false,
