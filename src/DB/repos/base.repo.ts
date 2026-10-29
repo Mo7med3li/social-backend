@@ -1,4 +1,10 @@
-import { Model, ProjectionType, QueryFilter, QueryOptions } from "mongoose";
+import {
+  Model,
+  ProjectionType,
+  QueryFilter,
+  QueryOptions,
+  UpdateQuery,
+} from "mongoose";
 
 export abstract class BaseRepository<T> {
   constructor(private readonly model: Model<T>) {}
@@ -32,7 +38,16 @@ export abstract class BaseRepository<T> {
   }
 
   //   Update one document
-  async updateOneDocument() {}
+  async updateOneDocument(
+    filter: QueryFilter<T>,
+    update: UpdateQuery<T>,
+    options?: QueryOptions<T>,
+  ): Promise<T | null> {
+    return await this.model.findOneAndUpdate(filter, update, {
+      new: true,
+      ...options,
+    });
+  }
 
   //   Update many documents
   async updateManyDocuments() {}
