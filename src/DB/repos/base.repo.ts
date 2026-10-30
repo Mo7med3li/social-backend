@@ -3,6 +3,7 @@ import {
   ProjectionType,
   QueryFilter,
   QueryOptions,
+  Types,
   UpdateQuery,
 } from "mongoose";
 
@@ -33,8 +34,12 @@ export abstract class BaseRepository<T> {
   }
 
   //   Find document by id
-  async findDocumentById(id: string): Promise<T | null> {
-    return await this.model.findById(id);
+  async findDocumentById(
+    id: Types.ObjectId,
+    projection?: ProjectionType<T>,
+    options?: QueryOptions<T>,
+  ): Promise<T | null> {
+    return await this.model.findById(id, projection, options);
   }
 
   //   Update one document
