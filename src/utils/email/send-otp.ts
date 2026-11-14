@@ -23,7 +23,7 @@ export const sendConfirmEmail = async (data: OtpEmailData) => {
 };
 
 export const sendForgotPasswordEmail = async (data: OtpEmailData) => {
-  return sendEmail({
+  return emailEmitter.emit("sendEmail", {
     to: data.to,
     subject: data.subject || "Forgot Password",
     html: confirmEmailTemplate({
