@@ -35,6 +35,11 @@ export interface IUser extends Document {
   OTPS?: IOTP[];
 }
 
+export interface IBlackListedTokens extends Document {
+  tokenId: string;
+  expiresAt: Date;
+}
+
 export interface IRequest extends Request {
   loggedInUser: {
     user: IUser;
