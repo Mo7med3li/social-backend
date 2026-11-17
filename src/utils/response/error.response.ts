@@ -37,6 +37,7 @@ export const errorHandler = (
 ): Response => {
   return res.status(err.statusCode || 500).json({
     success: false,
+    cause: err.cause,
     message: err.message || "Something went wrong",
     stack: process.env.NODE_ENV === "development" ? err.stack : undefined,
   });
